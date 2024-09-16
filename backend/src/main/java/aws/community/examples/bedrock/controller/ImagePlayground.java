@@ -23,7 +23,21 @@ public class ImagePlayground {
     }
 
     @PostMapping ("/foundation-models/model/image/stability.stable-diffusion-xl/invoke")
-    public StableDiffusion.Response invoke(@RequestBody StableDiffusion.Request body) {
+    public StableDiffusion.Response invokeStability(@RequestBody StableDiffusion.Request body) {
+        try {
+
+            return StableDiffusion.invoke(client, body.prompt(), body.stylePreset());
+
+        } catch (AccessDeniedException e) {
+            logger.error("Access Denied: %s".formatted(e.getMessage()));
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        } catch (Exception e) {
+            logger.error("Exception: %s".formatted(e.getMessage()));
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PostMapping ("/foundation-models/model/image/amazon.titan-image-generator-v1/invoke")
+    public StableDiffusion.Response invokeAmazon(@RequestBody StableDiffusion.Request body) {
         try {
 
             return StableDiffusion.invoke(client, body.prompt(), body.stylePreset());

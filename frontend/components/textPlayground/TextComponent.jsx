@@ -70,7 +70,7 @@ export default function TextContainer() {
 
             await response.json().then(data => {
                 if (selectedModel.modelId === "anthropic.claude-v2") {
-                    setPrompt(`Human: ${payload.prompt}\n\nAssistant: ${data.completion}\n\nHuman: `)
+                    setPrompt(`Human: ${payload.prompt}\t\n\nAssistant: ${data.completion}\n\nHuman: `)
                 } else {
                     setPrompt(`${payload.prompt}\n\n${data.completion}\n\n`)
                 }

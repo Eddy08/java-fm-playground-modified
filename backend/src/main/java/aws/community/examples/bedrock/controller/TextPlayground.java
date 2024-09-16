@@ -2,6 +2,7 @@ package aws.community.examples.bedrock.controller;
 
 import aws.community.examples.bedrock.aimodels.Claude;
 import aws.community.examples.bedrock.aimodels.Jurassic2;
+import aws.community.examples.bedrock.aimodels.Metallm3;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,10 @@ public class TextPlayground {
                     String completion = Jurassic2.invoke(client, request.prompt(), request.temperature(), request.maxTokens());
                     yield new Response(completion);
                 }
-
+                case Metallm3.MODEL_ID -> {
+                    String completion = Metallm3.invoke(client, request.prompt(), request.temperature(), request.maxTokens());
+                    yield new Response(completion);
+                }
                 default -> throw new IllegalArgumentException("Unsupported model ID");
             };
 
