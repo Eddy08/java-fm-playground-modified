@@ -10,7 +10,9 @@ export default function ImageContainer() {
     const [stylePreset, setStylePreset] = useState('no style');
     const [isLoading, setIsLoading] = useState(false);
 
-    const endpoint = "/foundation-models/model/image/stability.stable-diffusion-xl/invoke";
+    const endpoint = "/foundation-models/model/image/amazon.titan-image-generator-v1/invoke";
+
+    const endpoint1 = "/foundation-models/model/image/stability.stable-diffusion-xl/invoke";
     const api = `${GlobalConfig.apiHost}:${GlobalConfig.apiPort}${endpoint}`;
 
     const handleStyleChange = (newStyle) => {
@@ -36,6 +38,7 @@ export default function ImageContainer() {
         }
 
         try {
+            debugger;
             const response = await fetch(api, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},

@@ -1,5 +1,6 @@
 package aws.community.examples.bedrock.controller;
 
+import aws.community.examples.bedrock.aimodels.AwsTitanImageGenerationV2;
 import aws.community.examples.bedrock.aimodels.StableDiffusion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +23,7 @@ public class ImagePlayground {
         this.client = client;
     }
 
-    @PostMapping ("/foundation-models/model/image/stability.stable-diffusion-xl/invoke")
+    @PostMapping("/foundation-models/model/image/stability.stable-diffusion-xl/invoke")
     public StableDiffusion.Response invokeStability(@RequestBody StableDiffusion.Request body) {
         try {
 
@@ -36,11 +37,12 @@ public class ImagePlayground {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping ("/foundation-models/model/image/amazon.titan-image-generator-v1/invoke")
-    public StableDiffusion.Response invokeAmazon(@RequestBody StableDiffusion.Request body) {
+
+    @PostMapping("/foundation-models/model/image/amazon.titan-image-generator-v1/invoke")
+    public AwsTitanImageGenerationV2.Response invokeAmazon(@RequestBody AwsTitanImageGenerationV2.Request body) {
         try {
 
-            return StableDiffusion.invoke(client, body.prompt(), body.stylePreset());
+            return AwsTitanImageGenerationV2.invoke(client, body.prompt());
 
         } catch (AccessDeniedException e) {
             logger.error("Access Denied: %s".formatted(e.getMessage()));

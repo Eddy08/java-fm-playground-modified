@@ -1,6 +1,6 @@
 export const defaultModel = {
   modelName: "Meta llama 3",
-  modelId: "meta.llama3-70b-instruct-v1",
+  modelId: "meta.llama3-70b-instruct-v1:0",
   temperatureRange: {
     min: 0,
     max: 1,
@@ -8,8 +8,8 @@ export const defaultModel = {
   },
   maxTokenRange: {
     min: 0,
-    max: 10240,
-    default: 200,
+    max: 100000000,
+    default: 500000,
   },
 };
 export const claudeModel = {
