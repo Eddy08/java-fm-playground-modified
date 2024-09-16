@@ -1,3 +1,21 @@
+# For running : 
+Special command to fix the issue with no access etc.
+## Backend:
+```
+export AWS_ACCESS_KEY_ID=<Amazon access key id for the user>
+export AWS_SECRET_ACCESS_KEY=<Amazon secret key>
+mvn spring-boot:run
+```
+
+# Git issues:
+
+1. I have initially forked the repo directly from the provider.
+2. Now i want to use the new forked ui repo in my github repo
+3. and wants to push that changes.
+
+Response recieved from :
+![Own chat with Meta LLM 3](image.png)
+
 # ☕ Java FM Playground
 
 Welcome to the Java Foundation Model (FM) Playground, a sandbox for exploring Java integration with **Amazon Bedrock**.
