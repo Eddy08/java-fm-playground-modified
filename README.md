@@ -1,11 +1,24 @@
-# For running : 
+# For running :
+
 Special command to fix the issue with no access etc.
+
 ## Backend:
+
 ```
 export AWS_ACCESS_KEY_ID=<Amazon access key id for the user>
 export AWS_SECRET_ACCESS_KEY=<Amazon secret key>
 mvn spring-boot:run
 ```
+
+# Killing any process:
+
+- list any process listening to the port 8080:
+
+lsof -i:55500
+
+- To kill any process listening to the port 8080:
+
+kill $(lsof -t -i:55500)
 
 # Git issues:
 
@@ -121,10 +134,10 @@ Similarly, in the backend terminal, use the `Ctrl + C` shortcut to stop the serv
 
 If you encounter any issues, you can forcefully terminate the processes by finding the process ID (`PID`) and using the `kill` command on Unix-based systems or Task Manager on Windows.
 
-
 ## Using Different Ports
 
 Change the backend port in the following files:
+
 - `backend/src/main/resources/application.yml`
 - `frontend/app/app.config.js`
 
