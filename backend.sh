@@ -1,1 +1,1 @@
-cd backend/; mvn spring-boot:run;
+kill $(lsof -t -i:55500); AWS_ACCESS_KEY_ID=$1; AWS_SECRET_ACCESS_KEY=$2; cd backend/; mvn spring-boot:run;
