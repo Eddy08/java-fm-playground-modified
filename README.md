@@ -2,7 +2,9 @@
 
 # For running :
 
+```
 export AWS_ACCESS_KEY_ID=<Amazon access key id for the user>;export AWS_SECRET_ACCESS_KEY=<Amazon secret key>;bash startup.sh
+```
 
 # Killing any process:
 
