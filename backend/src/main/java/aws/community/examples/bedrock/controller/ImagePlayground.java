@@ -42,7 +42,7 @@ public class ImagePlayground {
     public AwsTitanImageGenerationV2.Response invokeAmazon(@RequestBody AwsTitanImageGenerationV2.Request body) {
         try {
 
-            return AwsTitanImageGenerationV2.invoke(client, body.prompt());
+            return AwsTitanImageGenerationV2.invoke(client, body.prompt(), "anime");
 
         } catch (AccessDeniedException e) {
             logger.error("Access Denied: %s".formatted(e.getMessage()));
