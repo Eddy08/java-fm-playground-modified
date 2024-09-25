@@ -1,0 +1,16 @@
+// For Debugging use below file: 
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "command": "run bash script",
+            "name": "export AWS_ACCESS_KEY_ID=<Amazon access key id for the user>;export AWS_SECRET_ACCESS_KEY=<Amazon secret key>;bash startup.sh",
+            "request": "launch",
+            "type": "${cwd}"
+        }
+      
+    ]
+}
