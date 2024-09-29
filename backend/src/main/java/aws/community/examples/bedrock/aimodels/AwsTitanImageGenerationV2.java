@@ -11,55 +11,57 @@ import java.util.List;
 
 public class AwsTitanImageGenerationV2 {
 
-        public static final List<String> STYLES = Arrays.asList(
-                        "3d-model",
-                        "analog-film",
-                        "anime",
-                        "cinematic",
-                        "comic-book",
-                        "digital-art",
-                        "enhance",
-                        "fantasy-art",
-                        "isometric",
-                        "line-art",
-                        "low-poly",
-                        "modeling-compound",
-                        "neon-punk",
-                        "origami",
-                        "photographic",
-                        "pixel-art",
-                        "tile-texture");
+    public static final List<String> STYLES = Arrays.asList(
+            "3d-model",
+            "analog-film",
+            "anime",
+            "cinematic",
+            "comic-book",
+            "digital-art",
+            "enhance",
+            "fantasy-art",
+            "isometric",
+            "line-art",
+            "low-poly",
+            "modeling-compound",
+            "neon-punk",
+            "origami",
+            "photographic",
+            "pixel-art",
+            "tile-texture");
 
-        public static Response invoke(BedrockRuntimeClient client, String prompt, String stylePreset) {
+    public static Response invoke(BedrockRuntimeClient client, String prompt, String stylePreset) {
 
-                JSONArray promptsJson = new JSONArray(List.of(new JSONObject().put("text", prompt)));
-                JSONObject jsonBody = new JSONObject()
-                                .put("input", promptsJson)
-                                .put("params", new JSONObject()
-                                                .put("style_preset", stylePreset)
-                                                .put("width", 512)
-                                                .put("height", 512));
+        JSONObject jsonBody = new JSONObject()
+                .put("textToImageParams", new JSONObject().put("text", prompt))
+                .put("taskType", "TEXT_IMAGE")
+                .put("imageGenerationConfig", new JSONObject()
+                        .put("cfgScale", 8)
+                        .put("seed", 0)
+                        .put("width", 1024)
+                        .put("height", 1024)
+                        .put("numberOfImages", 3));
 
-                SdkBytes sdkBytesBody = SdkBytes.fromUtf8String(jsonBody.toString());
+        SdkBytes sdkBytesBody = SdkBytes.fromUtf8String(jsonBody.toString());
 
-                InvokeModelRequest request = InvokeModelRequest.builder()
-                                .modelId("amazon.titan-image-generator-v1")
-                                .body(sdkBytesBody)
-                                .build();
+        InvokeModelRequest request = InvokeModelRequest.builder()
+                .modelId("amazon.titan-image-generator-v1")
+                .body(sdkBytesBody)
+                .build();
 
-                InvokeModelResponse response = client.invokeModel(request);
-                String imageBytes = new JSONObject(response.body().asUtf8String())
-                                .getJSONArray("artifacts")
-                                .getJSONObject(0)
-                                .get("base64")
-                                .toString();
+        InvokeModelResponse response = client.invokeModel(request);
+        String imageBytes = new JSONObject(response.body().asUtf8String())
+                .getJSONArray("images")
+                .getJSONObject(0)
+                .get("base64")
+                .toString();
 
-                return new Response(imageBytes);
-        }
+        return new Response(imageBytes);
+    }
 
-        public record Request(String prompt, String stylePreset) {
-        }
+    public record Request(String prompt, String stylePreset) {
+    }
 
-        public record Response(String imageByteArray) {
-        }
+    public record Response(String imageByteArray) {
+    }
 }
