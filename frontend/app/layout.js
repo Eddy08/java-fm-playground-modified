@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "FM Playground",
   description:
-    "This sample application shows how to use the Amazon Bedrock SDK for Python.",
+    "This sample application shows how to use the Amazon Bedrock SDK for Java.",
 };
 
 export default function RootLayout({ children }) {

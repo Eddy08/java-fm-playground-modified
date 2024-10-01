@@ -8,10 +8,10 @@ export default function Home() {
       </h3>
       <div className="mt-8">
         The Foundation Model (FM) Playground is a sample application showcasing
-        how to leverage Amazon Bedrock using Python. As any sample application,
-        it is not production-ready. It is provided for the sole purpose of
-        illustrating how developers can leverage Amazon Bedrock to build
-        generative AI-enabled applications.
+        how to leverage Amazon Bedrock using Spring Boots. As any sample
+        application, it is not production-ready. It is provided for the sole
+        purpose of illustrating how developers can leverage Amazon Bedrock to
+        build generative AI-enabled applications.
       </div>
       <div className="mt-8"></div>
       <div className="mt-4">
