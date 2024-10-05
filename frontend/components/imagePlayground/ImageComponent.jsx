@@ -61,7 +61,7 @@ export default function ImageContainer() {
 
     return (
         <div className="flex flex-col flex-auto h-full p-6">
-            <h3 className="text-3xl font-medium text-gray-700">Image Playground (Stable Diffusion XL)</h3>
+            <h3 className="text-3xl font-medium text-gray-700">Image Playground</h3>
             <div className="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 p-4 mt-8">
                 <div className="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
                     <div className="flex-grow">
