@@ -8,6 +8,7 @@ import software.amazon.awssdk.services.bedrockruntime.model.InvokeModelResponse;
 import org.json.JSONArray;
 import java.util.Arrays;
 import java.util.List;
+import java.util.*;
 
 public class AwsTitanImageGenerationV2 {
 
@@ -50,17 +51,20 @@ public class AwsTitanImageGenerationV2 {
                                 .build();
 
                 InvokeModelResponse response = client.invokeModel(request);
-                String imageBytes = new JSONObject(response.body().asUtf8String())
-                                .getJSONArray("images")
-                                .get(0)
-                                .toString();
+                List<String> listOfImages = new ArrayList<>();
+                JSONArray imageBytes = new JSONObject(response.body().asUtf8String())
+                                .getJSONArray("images");
+                for (int i = 0; i < imageBytes.length(); i++) {
+                        listOfImages.add(imageBytes.get(i)
+                                        .toString());
+                }
 
-                return new Response(imageBytes);
+                return new Response(listOfImages);
         }
 
         public record Request(String prompt, String stylePreset) {
         }
 
-        public record Response(String imageByteArray) {
+        public record Response(List<String> imageByteArray) {
         }
 }
