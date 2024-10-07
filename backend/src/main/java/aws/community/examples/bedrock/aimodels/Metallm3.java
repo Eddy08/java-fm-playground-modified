@@ -14,7 +14,7 @@ public class Metallm3 {
                 JSONObject jsonBody = new JSONObject()
                                 .put("prompt", prompt)
                                 .put("temperature", temperature)
-                                .put("max_gen_len", 4048)
+                                .put("max_gen_len", 2024)
                                 .put("top_p", 0.9);
                 // .put("max_tokens_to_sample", maxTokens);
 
