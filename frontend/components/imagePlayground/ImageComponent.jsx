@@ -5,7 +5,7 @@ import StyleSelector from "@/components/imagePlayground/StyleSelector";
 import GlobalConfig from "@/app/app.config";
 
 export default function ImageContainer() {
-    const [imgSrc, setImgSrc] = useState('/placeholder.png');
+    const [imgSrc, setImgSrc] = useState(['/placeholder.png','/placeholder.png','/placeholder.png']);
     const [inputValue, setInputValue] = useState('');
     const [stylePreset, setStylePreset] = useState('no style');
     const [isLoading, setIsLoading] = useState(false);
@@ -51,7 +51,7 @@ export default function ImageContainer() {
 
             const body = await response.json();
 
-            setImgSrc(`data:image/png;base64,${body.imageByteArray}`);
+            setImgSrc([`data:image/png;base64,${body.imageByteArray[0]}`,`data:image/png;base64,${body.imageByteArray[1]}`,`data:image/png;base64,${body.imageByteArray[2]}`]);
         } catch (error) {
             console.error('Error fetching image:', error);
         } finally {
@@ -109,14 +109,35 @@ export default function ImageContainer() {
                 <div className="flex flex-col h-full overflow-x-auto mb-4">
                     <div className="flex flex-col h-full">
                         <div className="grid grid-cols-12 gap-y-2">
-                            <div className="col-start-1 col-end-11 p-3 rounded-lg">
+                            <div className="grid col-span-2 row-span-2 p-3 rounded-lg">
                                 <div className="flex flex-row items-center w-[512px] h-[512px]">
                                     {isLoading ? (
                                         <Spinner />
                                     ) : (
-                                        <Image src={imgSrc} alt="AI generated image" width="512" height="512" />
+                                        
+                                        <Image src={imgSrc[0]} alt="AI generated image" width="512" height="512" />
+                                        
                                     )}
                                 </div>
+                                <div className="flex flex-row items-center w-[512px] h-[512px]">
+                                    {isLoading ? (
+                                        <Spinner />
+                                    ) : (
+                                        
+                                        <Image src={imgSrc[1]} alt="AI generated image" width="512" height="512" />
+                                        
+                                    )}
+                                </div>  <div className="flex flex-row items-center w-[512px] h-[512px]">
+                                    {isLoading ? (
+                                        <Spinner />
+                                    ) : (
+                                        
+                                        <Image src={imgSrc[2]} alt="AI generated image" width="512" height="512" />
+                                        
+                                    )}
+                              </div>
+                              
+                              
                             </div>
                         </div>
                     </div>
