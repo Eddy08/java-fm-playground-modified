@@ -1,6 +1,6 @@
 "use client";
 
-export default function Human({text}) {
+export default function Human({text,count}) {
     return (
         <div className="col-start-3 col-end-13 p-3 rounded-lg">
             <div className="flex items-center justify-start flex-row-reverse">
@@ -12,7 +12,8 @@ export default function Human({text}) {
                 <div
                     className="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
                 >
-                    <div>{text}</div>
+                    <div><em> Query:{count}</em> {text} </div>
+                    
                 </div>
             </div>
         </div>
