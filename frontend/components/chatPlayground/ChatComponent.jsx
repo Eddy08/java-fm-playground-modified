@@ -77,7 +77,7 @@ export default function ChatContainer() {
                         {conversation.map((item, i) => item.sender === "Assistant" ? (
                                 <Assistant text={item.message} key={i}/>
                             ) : (
-                                <Human text={item.message} count={Number(i)/2 +1} key={i}/>
+                                <Human text={item.message} key={i}/>
                             ))}
                         {isLoading ? ( <Loader /> ) : ( <div></div> ) }
                     </div>
